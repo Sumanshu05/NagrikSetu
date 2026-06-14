@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Custom design tokens exposed as Tailwind theme variables */
+@theme {
+  --color-primary: #7F77DD;
+  --color-primary-hover: #6b62cc;
+  --color-primary-light: #AFA9EC;
+  --color-primary-dark: #3C3489;
+  --color-accent-green: #5DCAA5;
+  --color-accent-green-light: #9FE1CB;
+  --color-accent-orange: #EF9F27;
+  --color-bg-dark: #1a0a2e;
+  --color-bg-light: #f7f6fd;
+  --color-muted: #9490B8;
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* Global resets */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+#root { width: 100%; display: block; }
+p { margin: 0; }
+
+/* Pulse animation for the live dot */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.dot-pulse { animation: pulseDot 2s ease infinite; }
+
+/* FadeInUp hero animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up       { animation: fadeInUp 0.6s ease both; }
+.fade-in-up-delay { animation: fadeInUp 0.7s 0.15s ease both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.5s ease both; }
