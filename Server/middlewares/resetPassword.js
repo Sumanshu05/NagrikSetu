@@ -35,7 +35,7 @@ exports.resetPasswordToken = async(req , res) => {
         console.log("DETAILS OF THE USER" , updatedDetails);
 
         //create url for reset
-        const url = `http://localhost:3000/update-password/${token}`;
+        const url = `${process.env.FRONTEND_URL || "http://localhost:5173"}/update-password/${token}`;
 
 
         //email send kro jisme yeh url hoo
