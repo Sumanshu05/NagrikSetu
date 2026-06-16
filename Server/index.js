@@ -33,6 +33,7 @@ app.use(
         origin: function (origin, callback) {
             const allowedOrigins = [
                 process.env.FRONTEND_URL,
+                "https://nagrik-setu-app.vercel.app",
                 "http://localhost:3000",
                 "http://localhost:5173",
                 "http://localhost:5174",
