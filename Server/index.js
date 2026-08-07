@@ -9,6 +9,7 @@ const officerRoutes = require("./routes/Officer");
 const adminRoutes = require("./routes/Admin");
 const contactRoutes = require("./routes/Contact");
 const reviewRoutes = require("./routes/Review");
+const aiRoutes = require("./routes/Ai");
 
 const { connect } = require("./config/database");
 const { cloudinaryConnect } = require("./config/cloudinary");
@@ -67,6 +68,7 @@ app.use("/api/v1/officer", officerRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/review", reviewRoutes);
+app.use("/api/v1/ai", aiRoutes);
 
 // default route
 app.get("/", (req, res) => {

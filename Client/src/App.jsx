@@ -20,6 +20,7 @@ import Notifications     from './pages/Notifications';
 import ContactUs         from './pages/ContactUs';
 import OpenRoute from './components/core/Auth/OpenRoute';
 import PrivateRoute from './components/core/Auth/PrivateRoute';
+import AIChatWidget from './components/common/AIChatWidget';
 
 const Home = () => {
   return (
@@ -89,6 +90,7 @@ const AppContent = () => {
         </Routes>
       </div>
       {!hideLayout && <Footer />}
+      <AIChatWidget />
     </div>
   );
 };

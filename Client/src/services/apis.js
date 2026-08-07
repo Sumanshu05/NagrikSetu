@@ -60,3 +60,10 @@ export const reviewEndpoints = {
   CREATE_REVIEW_API: BASE_URL + "/review",
   GET_ALL_REVIEWS_API: BASE_URL + "/review",
 }
+
+// AI ENDPOINTS
+export const aiEndpoints = {
+  ASK_AI_API: BASE_URL + "/ai/query",
+  ANALYZE_COMPLAINT_API: BASE_URL + "/ai/analyze-complaint",
+}
+
