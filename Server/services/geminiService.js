@@ -54,7 +54,10 @@ async function generateWithFallback(buildPayload) {
                 return response.text;
             } catch (error) {
                 const status = error.status || error.code;
-                const isOverloaded = status === 503 || status === 429;
+                // Check for network-level timeout in the error cause (undici HeadersTimeoutError)
+                const causeCode = error?.cause?.code || "";
+                const isTimeout = causeCode === "UND_ERR_HEADERS_TIMEOUT" || causeCode === "UND_ERR_SOCKET" || causeCode === "ECONNRESET";
+                const isOverloaded = status === 503 || status === 429 || isTimeout;
                 const isNotFound = status === 404;
 
                 if (isNotFound) {
@@ -65,13 +68,14 @@ async function generateWithFallback(buildPayload) {
 
                 if (isOverloaded) {
                     if (attempt === 0) {
-                        // Wait 2 seconds then retry same model once
-                        console.warn(`[AI] Model ${model} overloaded (${status}), retrying in 2s...`);
-                        await sleep(2000);
+                        // Wait 3 seconds then retry same model once
+                        const reason = isTimeout ? "timeout" : `status ${status}`;
+                        console.warn(`[AI] Model ${model} failed (${reason}), retrying in 3s...`);
+                        await sleep(3000);
                         continue;
                     } else {
                         // Already retried - move to next model
-                        console.warn(`[AI] Model ${model} still overloaded after retry, trying next model...`);
+                        console.warn(`[AI] Model ${model} still failing after retry, trying next model...`);
                         break;
                     }
                 }
