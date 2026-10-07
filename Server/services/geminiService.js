@@ -15,11 +15,14 @@ function getAiClient() {
 }
 
 // Models to try in order - if one is overloaded, fallback to next
+// Active models in priority order: start with high-availability, low-latency models
 const MODELS_TO_TRY = [
+    "gemini-3.5-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-3.5-flash",
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
     "gemini-flash-latest",
-    "gemini-2.0-flash",
-    "gemini-2.0-flash-lite",
-    "gemini-2.0-flash-001",
 ];
 
 const SYSTEM_INSTRUCTION = `
