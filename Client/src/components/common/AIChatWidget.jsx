@@ -8,7 +8,7 @@ export default function AIChatWidget() {
     const [messages, setMessages] = useState([
         {
             role: "assistant",
-            text: "Hello! I am **NagrikSetu AI Assistant** powered by Google Gemini. How can I help you with civic issues or platform guidance today?",
+            text: "Hello! I am **NagrikSetu AI Assistant**. How can I help you with civic issues or platform guidance today?",
         },
     ]);
     const [input, setInput] = useState("");
@@ -43,7 +43,7 @@ export default function AIChatWidget() {
                 ...prev,
                 {
                     role: "assistant",
-                    text: "Sorry, I encountered an issue reaching the server. Please check if `GEMINI_API_KEY` is configured in your server `.env` file.",
+                    text: "Sorry, I encountered an issue reaching the server. Please check if the server is running.",
                 },
             ]);
         } finally {
@@ -89,7 +89,7 @@ export default function AIChatWidget() {
                             </div>
                             <div>
                                 <h3 className="text-white font-semibold text-base leading-tight">NagrikSetu AI</h3>
-                                <p className="text-xs text-indigo-200">Powered by Google Gemini</p>
+                                <p className="text-xs text-indigo-200">Smart Citizen Helper</p>
                             </div>
                         </div>
                         <button
@@ -172,7 +172,7 @@ export default function AIChatWidget() {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask Gemini AI assistant..."
+                            placeholder="Ask AI assistant..."
                             className="flex-1 bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 resize-none max-h-24"
                         />
                         <button
