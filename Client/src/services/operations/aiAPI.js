@@ -11,10 +11,16 @@ export async function askAiAssistant(prompt) {
     }
     return response.data.data;
   } catch (error) {
+    // Extract Axios error response status if available
+    const status = error?.response?.status;
+    if (status === 503 || status === 429) {
+      throw new Error("The AI assistant is currently busy. Please wait a moment and try again.");
+    }
     console.error("ASK_AI_API ERROR: ", error);
     throw error;
   }
 }
+
 
 export async function analyzeComplaint(complaintText) {
   try {

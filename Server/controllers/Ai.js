@@ -22,13 +22,20 @@ exports.askAi = async (req, res) => {
             data: aiReply,
         });
     } catch (error) {
-        console.error("AI Controller askAi Error:", error);
-        return res.status(500).json({
+        const isOverloaded = error.status === 503 || error.status === 429;
+        const statusCode = isOverloaded ? 503 : 500;
+        const userMessage = isOverloaded
+            ? "The AI assistant is temporarily busy due to high demand. Please wait a moment and try again."
+            : error.message || "Failed to process query.";
+
+        console.error("AI Controller askAi Error:", error.message || error);
+        return res.status(statusCode).json({
             success: false,
-            message: error.message || "Failed to process query using Gemini AI.",
+            message: userMessage,
         });
     }
 };
+
 
 /**
  * Endpoint to auto-analyze citizen complaint text for department, urgency, and summary

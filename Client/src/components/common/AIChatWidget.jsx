@@ -43,7 +43,7 @@ export default function AIChatWidget() {
                 ...prev,
                 {
                     role: "assistant",
-                    text: "Sorry, I encountered an issue reaching the server. Please check if the server is running.",
+                    text: error?.message || "Sorry, I encountered an issue reaching the server. Please try again.",
                 },
             ]);
         } finally {
